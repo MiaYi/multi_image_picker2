@@ -98,6 +98,12 @@ public class SwiftMultiImagePicker2Plugin: NSObject, FlutterPlugin {
             
             var totalImagesSelected = 0
             
+            let albumOptions = vc.settings.fetch.album.options
+            vc.settings.fetch.album.fetchResults = [
+                PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumUserLibrary, options: albumOptions),
+                PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: albumOptions),
+            ]
+            
             vc.settings.selection.max = maxImages
 
             if (enableCamera) {
